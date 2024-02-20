@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
@@ -19,7 +20,9 @@ class ProductController extends Controller
         $product = Product::all();
 
         Log::info($product);
-        return response()->json(['message' => 'Product successfully',$product]);
+        return Inertia::render('first/welcome', [
+            'products' => $product
+        ]);
     }
 
     /**
